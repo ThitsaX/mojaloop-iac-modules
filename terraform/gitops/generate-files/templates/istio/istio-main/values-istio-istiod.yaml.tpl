@@ -187,6 +187,7 @@ ownerName: ""
 meshConfig:
   enablePrometheusMerge: true
   enableAutoMtls: false
+  accessLogFile: /dev/stdout
   defaultConfig:
     proxyMetadata:
       # Enable basic DNS proxying
