@@ -10,6 +10,8 @@ external-dns:
   provider: cloudflare
   cloudflare:
     secretName: ${external_dns_credentials_secret}
+    proxied: false  # ← Disable proxying globally (override per-record via annotations)
+    # Optional: If you want some records proxied (public IPs), use annotations in Services/Ingresses
 %{ endif ~}
   domainFilters:
     - ${public_subdomain}
