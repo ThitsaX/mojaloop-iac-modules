@@ -71,6 +71,18 @@ output "minio_fqdn" {
   value = aws_route53_record.minio_server_private.fqdn
 }
 
+output "mimir_fqdn" {
+  value = aws_route53_record.mimir_server_private.fqdn  
+}
+
+output "mimir_listening_port" {
+  value = var.mimir_listening_port
+}
+
+output "central_observability_grafana_server_url" {
+  value = "https://${aws_route53_record.central_observability_grafana_server_private.fqdn}"
+}
+
 output "minio_server_url" {
   value = "${aws_route53_record.minio_server_private.fqdn}:${var.minio_listening_port}"
 }

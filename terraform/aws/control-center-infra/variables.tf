@@ -136,6 +136,12 @@ variable "minio_listening_port" {
   description = "which port to listen for server traffic by minio"
 }
 
+variable "mimir_listening_port" {
+  type        = number
+  default     = 9009
+  description = "which port to listen for server traffic by mimir"  
+}
+
 variable "minio_ui_port" {
   type        = number
   default     = 9001
