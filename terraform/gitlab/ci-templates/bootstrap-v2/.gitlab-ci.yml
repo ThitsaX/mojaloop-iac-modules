@@ -27,7 +27,7 @@ stages:
 
 variables:
   IMAGE_TAG: latest
-  TEMPLATE_REPO_URL: https://github.com/mojaloop/iac-modules.git
+  TEMPLATE_REPO_URL: https://github.com/thitsax/mojaloop-iac-modules.git
   CI_TEMPLATE_PATH: terraform/gitlab/ci-templates/k8s-cluster
   K8S_TEMPLATE_PATH: terraform/k8s
   TMP_TEMPLATES_DIR: /tmp/iac-templates

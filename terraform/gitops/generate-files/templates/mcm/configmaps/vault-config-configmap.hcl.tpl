@@ -232,7 +232,7 @@ spec:
               echo "Downloading the test collection...";
 
               wget
-              https://github.com/mojaloop/testing-toolkit-test-cases/archive/v${onboarding_collection_tag}.zip
+              https://github.com/thitsax/testing-toolkit-test-cases/archive/v${onboarding_collection_tag}.zip
               -O downloaded-test-collections.zip;
 
               mkdir tmp_test_cases;

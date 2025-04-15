@@ -3,7 +3,7 @@ tests:
 configFileDefaults:
   labels: ${ttk_hub_provisioning_testcase_labels}
 config:
-  testCasesZipUrl: https://github.com/mojaloop/testing-toolkit-test-cases/archive/v${hub_provisioning_ttk_test_case_version}.zip
+  testCasesZipUrl: https://github.com/thitsax/testing-toolkit-test-cases/archive/v${hub_provisioning_ttk_test_case_version}.zip
   testCasesPathInZip: testing-toolkit-test-cases-${hub_provisioning_ttk_test_case_version}/collections/hub/provisioning/new_hub
   testSuiteName: Hub Provisioning
   environmentName: ${ingress_subdomain}
