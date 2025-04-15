@@ -1,3 +1,9 @@
+export AWS_PROFILE=wynepaypre
+export PRIVATE_REPO_TOKEN=nullvalue
+export PRIVATE_REPO_USER=nullvalue
+export ANSIBLE_BASE_OUTPUT_DIR=$PWD/output
+export IAC_TERRAFORM_MODULES_TAG=v5.9.1-aws
+export PRIVATE_REPO=example.com
 export IAC_TEMPLATES_TAG=$IAC_TERRAFORM_MODULES_TAG
 export CONTROL_CENTER_CLOUD_PROVIDER=aws
 yq eval '.' environment.yaml -o=json > environment.json

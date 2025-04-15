@@ -1,10 +1,10 @@
 region: eu-west-1
-domain: mojaloop.live
-tenant: labs11
+domain: ccin.wynepayhub-pre.io
+tenant: lab
 enable_github_oauth: false
 enable_netmaker_oidc: true
 enable_central_observability_grafana_oidc: true
-ansible_collection_tag: v5.2.7-rc01
+ansible_collection_tag: v5.5.0-aws
 gitlab_admin_rbac_group: tenant-admins
 gitlab_readonly_rbac_group: tenant-viewers
 smtp_server_enable: false
@@ -12,7 +12,7 @@ gitlab_version: 16.0.5
 gitlab_runner_version: 16.0.2
 iac_group_name: iac_admin
 netmaker_version: 0.24.0
-letsencrypt_email: test@mojalabs.io
+letsencrypt_email: test@thitsaworks.com
 delete_storage_on_term: true
 docker_server_extra_vol_size: 100
 loki_data_expiry: 7d
@@ -23,21 +23,15 @@ percona_backup_data_expiry: 3d
 controlcenter_netmaker_network_cidr: "10.20.30.0/24"
 envs:
   - env: dev
-    domain: labsk8s604.mojaloop.live
+    domain: dev.ccin.wynepayhub-pre.io
     vault_oidc_domain: int.dev
     grafana_oidc_domain: int.dev
     argocd_oidc_domain: int.dev
     netmaker_network_cidr: "10.20.31.0/24"
-  - env: test
-    domain: labsk8s604.mojaloop.live
-    vault_oidc_domain: int.test
-    grafana_oidc_domain: int.test
-    argocd_oidc_domain: int.test
-    netmaker_network_cidr: "10.20.32.0/24"
 tags:
   {
     "Origin": "Terraform",
-    "mojaloop/cost_center": "mlf-iac-sandbox",
-    "mojaloop/env": "ft-sbox-rw",
-    "mojaloop/owner": "Samuel-Kummary",
+    "mojaloop/cost_center": "dev",
+    "mojaloop/env": "dev",
+    "mojaloop/owner": "Pye-Aung",
   }
