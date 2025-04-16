@@ -1,6 +1,7 @@
 module "generate_mojaloop_files" {
   source = "../generate-files"
   var_map = {
+    hub_name                                                          = "hub-${var.public_subdomain}"
     mojaloop_enabled                                                  = var.mojaloop_enabled
     gitlab_project_url                                                = var.gitlab_project_url
     mojaloop_chart_repo                                               = var.mojaloop_chart_repo

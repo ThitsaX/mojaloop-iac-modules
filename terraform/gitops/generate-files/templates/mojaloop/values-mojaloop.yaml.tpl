@@ -1,5 +1,10 @@
 # Custom YAML TEMPLATE Anchors
 CONFIG:
+  ## HUB CONFIGURATION
+  hub_participant: &HUB_PARTICIPANT
+    id: 1
+    name: &HUB_NAME "${hub_name}"
+
   ## ACCOUNT-LOOKUP BACKEND
   als_db_database: &ALS_DB_DATABASE "${account_lookup_db_database}"
   als_db_password: &ALS_DB_PASSWORD ""
@@ -227,6 +232,16 @@ account-lookup-service:
         prefix: *ALS_MONITORING_PREFIX
   als-oracle-pathfinder:
     enabled: false
+
+als-msisdn-oracle:
+  enabled: true
+  config:
+    db_password: *ALS_DB_PASSWORD
+    db_secret: *ALS_DB_SECRET
+    db_host: *ALS_DB_HOST
+    db_user: *ALS_DB_USER
+    db_port: *ALS_DB_PORT
+    db_database: *ALS_DB_DATABASE
 
 quoting-service:
   quoting-service:
