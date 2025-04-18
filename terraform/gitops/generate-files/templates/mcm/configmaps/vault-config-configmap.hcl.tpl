@@ -223,6 +223,7 @@ spec:
             - '-c'
           args:
             - >
+              until nslookup github.com; do sleep 5;done;
               echo "Downloading the test collection...";
 
               wget
@@ -233,18 +234,44 @@ spec:
 
               unzip -d tmp_test_cases -o downloaded-test-collections.zip;
 
-              npm run cli -- \
-                -c cli-add-dfsp-config.json \
-                -e cli-add-dfsp-environment.json \
-                -i tmp_test_cases/testing-toolkit-test-cases-${onboarding_collection_tag}/collections/hub/provisioning_dfsp \
-                -u http://moja-ml-testing-toolkit-backend:5050 \
-                --report-format html \
-                --report-auto-filename-enable true \
-                --extra-summary-information="Test Suite:Provisioning DFSP,Environment:${public_subdomain}" \
-                --save-report true \
-                --report-name standard_provisioning_collection \
-                --save-report-base-url http://ttkbackend.${public_subdomain};
-              export TEST_RUNNER_EXIT_CODE="$?";
+              fxp_currencies="{{ .Data.fxpCurrencies }}"
+
+              if [ -z "$fxp_currencies" ]; then
+
+                npm run cli -- \
+                  -c cli-add-dfsp-config.json \
+                  -e cli-add-dfsp-environment.json \
+                  -i tmp_test_cases/testing-toolkit-test-cases-${onboarding_collection_tag}/collections/hub/provisioning/new_participants/new_dfsp.json \
+                  -u http://moja-ml-testing-toolkit-backend:5050 \
+                  --report-format html \
+                  --report-auto-filename-enable true \
+                  --extra-summary-information="Test Suite:Provisioning DFSP,Environment:${public_subdomain}" \
+                  --save-report true \
+                  --report-name standard_provisioning_collection \
+                  --save-report-base-url http://ttkbackend.${public_subdomain};
+                export TEST_RUNNER_EXIT_CODE="$?";
+
+              else
+
+                for fxp_currency in $fxp_currencies; do
+                  echo "Onboarding FXP currency $fxp_currency"
+                  node -e "const x=require('./cli-add-dfsp-environment.json');x.inputValues.fxpCurrency='$fxp_currency';console.log(JSON.stringify(x))" > fxp.json
+                  npm run cli -- \
+                    -c cli-add-dfsp-config.json \
+                    -e fxp.json \
+                    -i tmp_test_cases/testing-toolkit-test-cases-${onboarding_collection_tag}/collections/hub/provisioning/new_participants/new_fxp.json \
+                    -u http://moja-ml-testing-toolkit-backend:5050 \
+                    --report-format html \
+                    --report-auto-filename-enable true \
+                    --extra-summary-information="Test Suite:Provisioning FXP currency $fxp_currency,Environment:${public_subdomain}" \
+                    --save-report true \
+                    --report-name standard_provisioning_collection \
+                    --save-report-base-url http://ttkbackend.${public_subdomain};
+                  export TEST_RUNNER_EXIT_CODE="$?";
+                  if [ "$TEST_RUNNER_EXIT_CODE" -ne 0 ]; then break; fi;
+                done;
+
+              fi
 
               echo "Test Runner finished with exit code:
               $TEST_RUNNER_EXIT_CODE";
