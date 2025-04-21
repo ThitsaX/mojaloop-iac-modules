@@ -187,12 +187,17 @@ data:
     {
       "inputValues": {
         "HOST_ACCOUNT_LOOKUP_SERVICE": "http://${mojaloop_release_name}-account-lookup-service",
+        "HOST_ACCOUNT_LOOKUP_ADMIN": "http://${mojaloop_release_name}-account-lookup-service-admin",
         "HOST_CENTRAL_LEDGER": "http://${mojaloop_release_name}-centralledger-service",
+        "HOST_ORACLE_MSISDN": "http://${mojaloop_release_name}-als-msisdn-oracle",
         "DFSP_CALLBACK_URL": "http://{{ .Data.fqdn }}",
         "DFSP_NAME": "{{ .Data.host }}",
+        "HUB_NAME": "${hub_name}",
         "currency": "{{ .Data.currency_code }}",
+        "fundsIn": "0",
+        "isProxy": false,
         "hub_operator": "NOT_APPLICABLE",
-        "NET_DEBIT_CAP": "50000"
+        "NET_DEBIT_CAP": "0"
       }
     }
 ---
