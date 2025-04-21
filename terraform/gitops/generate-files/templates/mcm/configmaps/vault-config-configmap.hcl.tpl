@@ -195,7 +195,7 @@ data:
         "HUB_NAME": "${hub_name}",
         "currency": "{{ .Data.currency_code }}",
         "fundsIn": "0",
-        "isProxy": false,
+        "isProxy": "false",
         "hub_operator": "NOT_APPLICABLE",
         "NET_DEBIT_CAP": "0"
       }
