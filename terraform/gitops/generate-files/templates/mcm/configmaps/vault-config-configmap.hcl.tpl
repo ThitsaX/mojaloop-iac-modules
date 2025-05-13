@@ -239,7 +239,7 @@ spec:
 
               unzip -d tmp_test_cases -o downloaded-test-collections.zip;
 
-              fxp_currencies="{{ .Data.fxpCurrencies }}"
+              fxp_currencies=""
 
               if [ -z "$fxp_currencies" ]; then
 
