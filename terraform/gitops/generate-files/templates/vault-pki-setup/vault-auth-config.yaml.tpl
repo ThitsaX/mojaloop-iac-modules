@@ -49,8 +49,8 @@ spec:
   allowIPSans: true
   serverFlag: true
   clientFlag: false
-  ou: "Infrastructure Team"
-  organization: "Infitx"
+  ou: "Platform Engineering Team"
+  organization: "ThitsaWorks"
   keyBits: 2048
   noStore: true
   requireCn: false
@@ -77,8 +77,8 @@ spec:
   allowIPSans: true
   serverFlag: false
   clientFlag: true
-  ou: "Infrastructure Team"
-  organization: "Infitx"
+  ou: "Platform Engineering Team"
+  organization: "ThitsaWorks"
   keyBits: 2048
   noStore: true
   requireCn: false
