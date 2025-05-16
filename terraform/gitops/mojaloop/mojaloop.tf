@@ -191,7 +191,7 @@ module "generate_mojaloop_files" {
     jws_key_rsa_bits                                                  = try(var.app_var_map.jws_key_rsa_bits, var.jws_key_rsa_bits)
     jws_rotation_renew_before_hours                                   = try(var.app_var_map.jws_rotation_renew_before_hours, var.jws_rotation_renew_before_hours)
     jws_rotation_period_hours                                         = try(var.app_var_map.jws_rotation_period_hours, var.jws_rotation_period_hours)
-    mcm_hub_jws_endpoint                                              = "http://mcm-connection-manager-api.${var.mcm_namespace}.svc.cluster.local:3001/api/hub/jwscerts"
+    mcm_hub_jws_endpoint                                              = "http://mcm-connection-manager-api.${var.mcm_namespace}.svc.cluster.local:3001/api/dfsps/${local.hub_name}/jwscerts"
     ttk_gp_testcase_labels                                            = try(var.app_var_map.ttk_gp_testcase_labels, var.ttk_gp_testcase_labels)
     ttk_setup_testcase_labels                                         = try(var.app_var_map.ttk_setup_testcase_labels, var.ttk_setup_testcase_labels)
     ttk_cleanup_testcase_labels                                       = try(var.app_var_map.ttk_cleanup_testcase_labels, var.ttk_cleanup_testcase_labels)
@@ -243,6 +243,7 @@ resource "local_file" "values_hub_provisioning_override" {
 }
 
 locals {
+  hub_name                        = try(var.app_var_map.hub_name, "hub-${var.cluster_name}")
   mojaloop_wildcard_gateway       = try(var.app_var_map.mojaloop_ingress_internal_lb, true) ? "internal" : "external"
   ttk_fqdn                        = local.mojaloop_wildcard_gateway == "external" ? "ttk.${var.public_subdomain}" : "ttk.${var.private_subdomain}"
   ttk_istio_wildcard_gateway_name = local.mojaloop_wildcard_gateway == "external" ? var.istio_external_wildcard_gateway_name : var.istio_internal_wildcard_gateway_name
